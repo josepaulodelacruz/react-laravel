@@ -8,11 +8,11 @@ import NavBar from '../components/NavBar'
 import TodoItems from '../components/TodoItems/index.js'
 
 class Todos extends Component {
+
     render(){
         return (
             <div>
                 <NavBar/>
-
                 <div className="container">
                     <TodoItems/>
                 </div>
