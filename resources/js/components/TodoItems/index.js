@@ -1,11 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.scss'
 
 export default () => {
+    const [edit, setEdit] = useState(false)
+    const [todo, setTodo] = useState('Sample Todos')
+
+    const handleInput = (e) => {
+        setTodo(e.target.value)
+    }
+
+    const _handleEdit = () => {
+        setEdit(true)
+    }
+
+    const handleDelete = () => {
+        console.log('Delete')
+    }
+
+    const hitEnter = (event) => {
+        return event.keyCode === 13 ? onSubmit() : null
+    }
+
+    const onSubmit = () => {
+        console.log('Submitted')
+        setEdit(false)
+    }
+
     return (
-        <div className="todo-item-container">
-            <h1>Sample Todos Items</h1>
-            <p>test</p>
+        <div className="card todo-item-container">
+           <div className="card-body">
+               {
+                   edit ?
+                    <input
+                        type="text"
+                        className='edit-todo'
+                        placeholder={todo}
+                        onChange={(e) => handleInput(e)}
+                        onKeyDown={(e) => hitEnter(e)}
+                    /> : <h1 className="card-text">{todo}</h1>
+               }
+
+
+               <div className="d-flex justify-content-end">
+                   {
+                       edit ?
+                       <a href="#" className="btn btn-primary m-1" onClick={() => onSubmit()}>
+                           <strong>Submit</strong>
+                       </a> :
+                       <a href="#" onClick={() => _handleEdit()} className="btn btn-warning m-1">
+                           <strong>Edit</strong>
+                       </a>
+                   }
+
+                   <a href="#" onClick={() => handleDelete()} className={edit ? "btn btn-danger disabled m-1" : "btn btn-danger m-1"}>
+                       <strong>Delete</strong>
+                   </a>
+               </div>
+
+           </div>
         </div>
     )
 }

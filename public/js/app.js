@@ -6442,7 +6442,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".todo-item-container {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n  background-color: #f3f3f3;\n  box-shadow: #111;\n}", ""]);
+exports.push([module.i, ".todo-item-container {\n  width: 50%;\n  height: 25%;\n  border-radius: 20px;\n  background-color: #f3f3f3;\n  margin: auto;\n}\n.todo-item-container .edit-todo {\n  width: 100%;\n  height: 100%;\n}", ""]);
 
 // exports
 
@@ -69583,29 +69583,7 @@ __webpack_require__.r(__webpack_exports__);
     "aria-label": "Toggle navigation"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "navbar-toggler-icon"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "collapse navbar-collapse justify-content-end",
-    id: "navbarNav"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "navbar-nav justify-content-around"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item active"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "nav-link btn btn-primary",
-    href: "#"
-  }, "Add Todo ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "sr-only"
-  }, "(current)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "nav-link btn btn-warning",
-    href: "#"
-  }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "nav-link btn btn-danger",
-    href: "#"
-  }, "Delete")))));
+  })));
 });
 
 /***/ }),
@@ -69623,12 +69601,85 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.scss */ "./resources/js/components/TodoItems/index.scss");
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_index_scss__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      edit = _useState2[0],
+      setEdit = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Sample Todos'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      todo = _useState4[0],
+      setTodo = _useState4[1];
+
+  var handleInput = function handleInput(e) {
+    setTodo(e.target.value);
+  };
+
+  var _handleEdit = function _handleEdit() {
+    setEdit(true);
+  };
+
+  var handleDelete = function handleDelete() {
+    console.log('Delete');
+  };
+
+  var hitEnter = function hitEnter(event) {
+    return event.keyCode === 13 ? onSubmit() : null;
+  };
+
+  var onSubmit = function onSubmit() {
+    console.log('Submitted');
+    setEdit(false);
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "todo-item-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Sample Todos Items"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "test"));
+    className: "card todo-item-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, edit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "edit-todo",
+    placeholder: todo,
+    onChange: function onChange(e) {
+      return handleInput(e);
+    },
+    onKeyDown: function onKeyDown(e) {
+      return hitEnter(e);
+    }
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "card-text"
+  }, todo), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-end"
+  }, edit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-primary m-1",
+    onClick: function onClick() {
+      return onSubmit();
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Submit")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    onClick: function onClick() {
+      return _handleEdit();
+    },
+    className: "btn btn-warning m-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Edit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    onClick: function onClick() {
+      return handleDelete();
+    },
+    className: edit ? "btn btn-danger disabled m-1" : "btn btn-danger m-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Delete")))));
 });
 
 /***/ }),

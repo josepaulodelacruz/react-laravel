@@ -1,9 +1,12 @@
 .todo-item-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    width: 50%;
+    height: 25%;
     border-radius: 20px;
     background-color: #f3f3f3;
-    box-shadow: #111;
+    margin: auto;
+
+    .edit-todo {
+        width: 100%;
+        height: 100%;
+    }
 }
