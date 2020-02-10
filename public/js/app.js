@@ -6442,7 +6442,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".todo-item-container {\n  width: 50%;\n  height: 25%;\n  border-radius: 20px;\n  background-color: #f3f3f3;\n  margin: auto;\n}\n.todo-item-container .edit-todo {\n  width: 100%;\n  height: 100%;\n}", ""]);
+exports.push([module.i, ".todo-item-container {\n  width: 50%;\n  height: 25%;\n  border-radius: 20px;\n  background-color: #f3f3f3;\n  margin: auto;\n  margin-top: 20px;\n}\n.todo-item-container .edit-todo {\n  width: 100%;\n  height: 100%;\n}", ""]);
 
 // exports
 
@@ -69675,7 +69675,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var todoItem = _ref.todoItem;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       edit = _useState2[0],
@@ -69709,6 +69711,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     setEdit(false);
   };
 
+  console.log(todoItem);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card todo-item-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -69719,7 +69722,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     "aria-label": "Sizing example input",
     "aria-describedby": "inputGroup-sizing-default",
     ref: editTodo,
-    placeholder: todo,
+    placeholder: todoItem.title,
     onChange: function onChange(e) {
       return handleInput(e);
     },
@@ -69728,7 +69731,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "card-text"
-  }, todo), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, todoItem.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-end"
   }, edit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
@@ -69827,7 +69830,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var url = 'https:///127.0.0.1:8000';
 
 var Todos =
 /*#__PURE__*/
@@ -69849,8 +69851,12 @@ function (_Component) {
   _createClass(Todos, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("".concat(url, "/api/todos")).then(function (res) {
-        console.log(res);
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://127.0.0.1:8000/api/todos").then(function (res) {
+        _this2.setState({
+          items: res.data
+        });
       })["catch"](function (err) {
         console.log(err);
       });
@@ -69858,9 +69864,15 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var items = this.state.items;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NavBar__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TodoItems_index_js__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+      }, items.map(function (x, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TodoItems_index_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          key: index,
+          todoItem: x
+        });
+      })));
     }
   }]);
 

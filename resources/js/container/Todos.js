@@ -9,8 +9,6 @@ import axios from 'axios'
 import NavBar from '../components/NavBar'
 import TodoItems from '../components/TodoItems/index.js'
 
-const url = 'https:///127.0.0.1:8000'
-
 class Todos extends Component {
     constructor(props) {
         super(props);
@@ -20,9 +18,9 @@ class Todos extends Component {
     }
 
     componentDidMount () {
-        axios.get(`${url}/api/todos`)
+        axios.get(`http://127.0.0.1:8000/api/todos`)
             .then((res) => {
-                console.log(res)
+                this.setState({items: res.data})
             })
             .catch((err) => {
                 console.log(err)
@@ -31,11 +29,16 @@ class Todos extends Component {
 
 
     render(){
+        const { items } = this.state
         return (
             <div>
                 <NavBar/>
                 <div className="container">
-                    <TodoItems/>
+                    {
+                       items.map((x, index) => (
+                           <TodoItems key={index} todoItem={x}/>
+                       ))
+                    }
                 </div>
             </div>
         )

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './index.scss'
 
-export default () => {
+export default ({todoItem}) => {
     const [edit, setEdit] = useState(false)
     const [todo, setTodo] = useState('Sample Todos')
     const editTodo = useRef()
@@ -27,6 +27,9 @@ export default () => {
         setEdit(false)
     }
 
+    console.log(todoItem)
+
+
     return (
         <div className="card todo-item-container">
            <div className="card-body">
@@ -38,10 +41,10 @@ export default () => {
                            aria-label="Sizing example input"
                            aria-describedby="inputGroup-sizing-default"
                            ref={editTodo}
-                           placeholder={todo}
+                           placeholder={todoItem.title}
                            onChange={(e) => handleInput(e)}
                            onKeyDown={(e) => hitEnter(e)}
-                       /> : <h1 className="card-text">{todo}</h1>
+                       /> : <h1 className="card-text">{todoItem.title}</h1>
                }
 
 
