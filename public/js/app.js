@@ -69883,14 +69883,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var todoItem = _ref.todoItem,
       i = _ref.i,
-      deleteTodo = _ref.deleteTodo;
+      deleteTodo = _ref.deleteTodo,
+      isEditTodo = _ref.isEditTodo;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       edit = _useState2[0],
       setEdit = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Sample Todos'),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState4 = _slicedToArray(_useState3, 2),
       todo = _useState4[0],
       setTodo = _useState4[1];
@@ -69901,7 +69902,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     setTodo(e.target.value);
   };
 
-  var _handleEdit = function _handleEdit() {
+  var _handleEdit = function _handleEdit(id) {
     setEdit(true);
   };
 
@@ -69909,12 +69910,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     deleteTodo(ind, id);
   };
 
-  var hitEnter = function hitEnter(event) {
-    return event.keyCode === 13 ? onSubmit() : null;
-  };
-
-  var onSubmit = function onSubmit() {
-    console.log('Submitted');
+  var onSubmit = function onSubmit(id, todo) {
+    isEditTodo(id, todo);
     setEdit(false);
   };
 
@@ -69931,9 +69928,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     placeholder: todoItem.title,
     onChange: function onChange(e) {
       return handleInput(e);
-    },
-    onKeyDown: function onKeyDown(e) {
-      return hitEnter(e);
     }
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "card-text"
@@ -69943,7 +69937,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     href: "#",
     className: "btn btn-primary m-1",
     onClick: function onClick() {
-      return onSubmit();
+      return onSubmit(todoItem.id, todo);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Submit")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
@@ -70071,17 +70065,27 @@ var Todos = function Todos() {
     });
   };
 
-  console.log(items);
+  var handleEditTodo = function handleEditTodo(id, todo) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("http://127.0.0.1:8000/api/todos/".concat(id), {
+      title: todo
+    }).then(function (res) {
+      return setItems(res.data);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NavBar__WEBPACK_IMPORTED_MODULE_4__["default"], {
     submitTodo: submitTodo
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, items.map(function (x, index) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TodoItems_index_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      todoItem: x,
       i: index,
+      todoItem: x,
       key: index,
-      deleteTodo: handleDeleteTodo
+      deleteTodo: handleDeleteTodo,
+      isEditTodo: handleEditTodo
     });
   })));
 };

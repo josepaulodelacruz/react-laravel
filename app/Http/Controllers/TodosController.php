@@ -45,19 +45,14 @@ class TodosController extends Controller
 
     public function update (Request $request, $id)
     {
-        $items = Todos::all()->count();
-        if($id > $items) {
-            return response('Not found', 404);
-        } else {
-            $todos = Todos::find($id);
-            $data = $request->all();
+        $todos = Todos::find($id);
+        $data = $request->all();
 
-            $todos->title = $data['title'];
+        $todos->title = $data['title'];
 
-            $todos->save();
+        $todos->save();
 
-            return response('Now Updated');
-        }
+        return response(Todos::all(), 201);
 
     }
 

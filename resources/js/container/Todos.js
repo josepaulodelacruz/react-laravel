@@ -44,7 +44,14 @@ const Todos = () => {
             .catch(err => console.log(err))
     }
 
-    console.log(items)
+    const handleEditTodo = (id, todo) => {
+        axios.post(`http://127.0.0.1:8000/api/todos/${id}`, {
+            title: todo
+        })
+            .then(res => setItems(res.data))
+            .catch(err => console.log(err))
+    }
+
 
     return (
         <div>
@@ -52,7 +59,13 @@ const Todos = () => {
             <div className="container">
                 {
                     items.map((x, index) => (
-                        <TodoItems todoItem={x} i={index} key={index} deleteTodo={handleDeleteTodo}/>
+                        <TodoItems
+                            i={index}
+                            todoItem={x}
+                            key={index}
+                            deleteTodo={handleDeleteTodo}
+                            isEditTodo={handleEditTodo}
+                        />
                     ))
                 }
             </div>

@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './index.scss'
 
-export default ({todoItem, i, deleteTodo}) => {
+export default ({todoItem, i, deleteTodo, isEditTodo}) => {
     const [edit, setEdit] = useState(false)
-    const [todo, setTodo] = useState('Sample Todos')
+    const [todo, setTodo] = useState('')
     const editTodo = useRef()
 
     const handleInput = (e) => {
         setTodo(e.target.value)
     }
 
-    const _handleEdit = () => {
+    const _handleEdit = (id) => {
         setEdit(true)
     }
 
@@ -18,12 +18,8 @@ export default ({todoItem, i, deleteTodo}) => {
         deleteTodo(ind, id)
     }
 
-    const hitEnter = (event) => {
-        return event.keyCode === 13 ? onSubmit() : null
-    }
-
-    const onSubmit = () => {
-        console.log('Submitted')
+    const onSubmit = (id, todo) => {
+        isEditTodo(id, todo)
         setEdit(false)
     }
 
@@ -42,7 +38,6 @@ export default ({todoItem, i, deleteTodo}) => {
                            ref={editTodo}
                            placeholder={todoItem.title}
                            onChange={(e) => handleInput(e)}
-                           onKeyDown={(e) => hitEnter(e)}
                        /> : <h1 className="card-text">{todoItem.title}</h1>
                }
 
@@ -50,7 +45,7 @@ export default ({todoItem, i, deleteTodo}) => {
                <div className="d-flex justify-content-end">
                    {
                        edit ?
-                       <a href="#" className="btn btn-primary m-1" onClick={() => onSubmit()}>
+                       <a href="#" className="btn btn-primary m-1" onClick={() => onSubmit(todoItem.id, todo)}>
                            <strong>Submit</strong>
                        </a> :
                        <a href="#" onClick={() => _handleEdit()} className="btn btn-warning m-1">
