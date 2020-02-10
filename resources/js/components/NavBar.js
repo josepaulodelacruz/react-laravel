@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-export default () => {
+export default ({submitTodo}) => {
     const [addTodo, setAddTodo] = useState('')
     const inputTodo = useRef()
 
@@ -22,6 +22,7 @@ export default () => {
         console.log('submitted', addTodo)
         setAddTodo('')
         inputTodo.current.value = ''
+        submitTodo(addTodo)
     }
 
     return (
