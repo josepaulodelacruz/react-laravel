@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './index.scss'
 
 export default () => {
     const [edit, setEdit] = useState(false)
     const [todo, setTodo] = useState('Sample Todos')
+    const editTodo = useRef()
 
     const handleInput = (e) => {
         setTodo(e.target.value)
@@ -31,13 +32,16 @@ export default () => {
            <div className="card-body">
                {
                    edit ?
-                    <input
-                        type="text"
-                        className='edit-todo'
-                        placeholder={todo}
-                        onChange={(e) => handleInput(e)}
-                        onKeyDown={(e) => hitEnter(e)}
-                    /> : <h1 className="card-text">{todo}</h1>
+                       <input
+                           type="text"
+                           className="form-control"
+                           aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-default"
+                           ref={editTodo}
+                           placeholder={todo}
+                           onChange={(e) => handleInput(e)}
+                           onKeyDown={(e) => hitEnter(e)}
+                       /> : <h1 className="card-text">{todo}</h1>
                }
 
 

@@ -69686,6 +69686,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       todo = _useState4[0],
       setTodo = _useState4[1];
 
+  var editTodo = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+
   var handleInput = function handleInput(e) {
     setTodo(e.target.value);
   };
@@ -69713,7 +69715,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "card-body"
   }, edit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    className: "edit-todo",
+    className: "form-control",
+    "aria-label": "Sizing example input",
+    "aria-describedby": "inputGroup-sizing-default",
+    ref: editTodo,
     placeholder: todo,
     onChange: function onChange(e) {
       return handleInput(e);

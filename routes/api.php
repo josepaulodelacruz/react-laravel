@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Todos;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::resource('/todos', 'TodosController');
+//Route::resource('api/todos', 'TodosController@index');
+
+Route::resource('todos', 'TodosController');
+
 
 
