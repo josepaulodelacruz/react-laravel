@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="89f923f6-6ddc-4e7f-9218-ff7694051b4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Todos.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Todos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/TodoItems/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/TodoItems/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/container/Todos.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/container/Todos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +180,7 @@
       <workItem from="1581213753943" duration="8314000" />
       <workItem from="1581240370878" duration="7286000" />
       <workItem from="1581303276006" duration="19091000" />
-      <workItem from="1581328437857" duration="3936000" />
+      <workItem from="1581328437857" duration="6558000" />
     </task>
     <servers />
   </component>

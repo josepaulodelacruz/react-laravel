@@ -39,7 +39,7 @@ class TodosController extends Controller
         $todos->title = $data['title'];
         $todos->save();
 
-        return response($data, 201);
+        return response($todos, 201);
 
     }
 

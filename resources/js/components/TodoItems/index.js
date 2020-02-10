@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './index.scss'
 
-export default ({todoItem}) => {
+export default ({todoItem, i, deleteTodo}) => {
     const [edit, setEdit] = useState(false)
     const [todo, setTodo] = useState('Sample Todos')
     const editTodo = useRef()
@@ -14,8 +14,8 @@ export default ({todoItem}) => {
         setEdit(true)
     }
 
-    const handleDelete = () => {
-        console.log('Delete')
+    const handleDelete = (ind, id) => {
+        deleteTodo(ind, id)
     }
 
     const hitEnter = (event) => {
@@ -27,7 +27,6 @@ export default ({todoItem}) => {
         setEdit(false)
     }
 
-    console.log(todoItem)
 
 
     return (
@@ -59,7 +58,7 @@ export default ({todoItem}) => {
                        </a>
                    }
 
-                   <a href="#" onClick={() => handleDelete()} className={edit ? "btn btn-danger disabled m-1" : "btn btn-danger m-1"}>
+                   <a href="#" onClick={() => handleDelete(i, todoItem.id)} className={edit ? "btn btn-danger disabled m-1" : "btn btn-danger m-1"}>
                        <strong>Delete</strong>
                    </a>
                </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 import axios from 'axios'
+import uuid from 'uuid/v1'
 
 /**
  * Components
@@ -18,7 +19,6 @@ const Todos = () => {
            .catch(err => console.log(err))
     }, [])
 
-
     const submitTodo = (todo) => {
         if(todo) {
             axios.post('http://127.0.0.1:8000/api/todos', {
@@ -34,13 +34,25 @@ const Todos = () => {
         }
     }
 
+    //delete todo
+    const handleDeleteTodo = (ind, id) => {
+        axios.delete(`http://127.0.0.1:8000/api/todos/${id}`)
+            .then(res => {
+                const deleteItem = items.filter((x, index) => index !== ind)
+                setItems(deleteItem)
+            })
+            .catch(err => console.log(err))
+    }
+
+    console.log(items)
+
     return (
         <div>
             <NavBar submitTodo={submitTodo}/>
             <div className="container">
                 {
                     items.map((x, index) => (
-                        <TodoItems todoItem={x} key={index}/>
+                        <TodoItems todoItem={x} i={index} key={index} deleteTodo={handleDeleteTodo}/>
                     ))
                 }
             </div>
