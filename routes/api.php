@@ -21,6 +21,8 @@ use App\Todos;
 //Route::resource('api/todos', 'TodosController@index');
 
 Route::resource('todos', 'TodosController');
-
+Route::post('todos', 'TodosController@create');
+Route::post('todos/{todos}', 'TodosController@update');
+Route::delete('todos/{todos}', 'TodosController@destroy');
 
 

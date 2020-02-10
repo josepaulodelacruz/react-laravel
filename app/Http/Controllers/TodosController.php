@@ -27,4 +27,47 @@ class TodosController extends Controller
             return response(Todos::find($id), 201);
         }
     }
+
+    public function create (Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+        $data = $request->all();
+        $todos = new Todos();
+
+        $todos->title = $data['title'];
+        $todos->save();
+
+        return response($data, 201);
+
+    }
+
+    public function update (Request $request, $id)
+    {
+        $items = Todos::all()->count();
+        if($id > $items) {
+            return response('Not found', 404);
+        } else {
+            $todos = Todos::find($id);
+            $data = $request->all();
+
+            $todos->title = $data['title'];
+
+            $todos->save();
+
+            return response('Now Updated');
+        }
+
+    }
+
+    public function destroy ($id)
+    {
+        $todos = Todos::find($id);
+
+        $todos->delete();
+
+        return response('Successfulyy deleted');
+
+    }
 }
