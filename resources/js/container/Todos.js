@@ -14,14 +14,14 @@ const Todos = () => {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-       axios.get('http://127.0.0.1:8000/api/todos')
+       axios.get('http://eyecaredev.site/public/api/todos')
            .then(res => setItems(res.data))
            .catch(err => console.log(err))
     }, [])
 
     const submitTodo = (todo) => {
         if(todo) {
-            axios.post('http://127.0.0.1:8000/api/todos', {
+            axios.post('http://eyecaredev.site/public/api/todos', {
                 title: todo
             })
                 .then(res => {
@@ -36,7 +36,7 @@ const Todos = () => {
 
     //delete todo
     const handleDeleteTodo = (ind, id) => {
-        axios.delete(`http://127.0.0.1:8000/api/todos/${id}`)
+        axios.delete(`http://eyecaredev.site/public/api/todos/${id}`)
             .then(res => {
                 const deleteItem = items.filter((x, index) => index !== ind)
                 setItems(deleteItem)
@@ -45,7 +45,7 @@ const Todos = () => {
     }
 
     const handleEditTodo = (id, todo) => {
-        axios.post(`http://127.0.0.1:8000/api/todos/${id}`, {
+        axios.post(`http://eyecaredev.site/public/api/todos/${id}`, {
             title: todo
         })
             .then(res => setItems(res.data))
