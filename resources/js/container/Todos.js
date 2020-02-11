@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-
 import axios from 'axios'
-import uuid from 'uuid/v1'
 
 /**
  * Components
@@ -14,14 +12,14 @@ const Todos = () => {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-       axios.get('http://eyecaredev.site/public/api/todos')
+       axios.get('http://eyecaredev.site/react-laravel/public/api/todos')
            .then(res => setItems(res.data))
            .catch(err => console.log(err))
     }, [])
 
     const submitTodo = (todo) => {
         if(todo) {
-            axios.post('http://eyecaredev.site/public/api/todos', {
+            axios.post('http://eyecaredev.site/react-laravel/public/api/todos', {
                 title: todo
             })
                 .then(res => {
@@ -36,7 +34,7 @@ const Todos = () => {
 
     //delete todo
     const handleDeleteTodo = (ind, id) => {
-        axios.delete(`http://eyecaredev.site/public/api/todos/${id}`)
+        axios.delete(`http://eyecaredev.site/react-laravel/public/api/todos/${id}`)
             .then(res => {
                 const deleteItem = items.filter((x, index) => index !== ind)
                 setItems(deleteItem)
@@ -45,7 +43,7 @@ const Todos = () => {
     }
 
     const handleEditTodo = (id, todo) => {
-        axios.post(`http://eyecaredev.site/public/api/todos/${id}`, {
+        axios.post(`http://eyecaredev.site/react-laravel/public/api/todos/${id}`, {
             title: todo
         })
             .then(res => setItems(res.data))
